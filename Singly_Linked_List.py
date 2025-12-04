@@ -95,6 +95,13 @@ class Singly_Linked_List:
                     index += 1
                 next_node = temp_node.next.next
                 temp_node.next = next_node
+
+    def delete_entire_list(self): # both time and space complexity are of o(1)
+        if self.head is None:
+            return "the single linked list is empty"
+        else:
+            self.head = None
+            self.tail = None
     
 
     
@@ -109,15 +116,161 @@ singly_linked_list_1.insert(40, -1)
 singly_linked_list_1.insert(60, 2)
 singly_linked_list_1.insert(70, 3)
 
-singly_linked_list_1.display()
-print(singly_linked_list_1.search_value(20))
-print(singly_linked_list_1.search_value(100))
+singly_linked_list_1.display() # shows 94 -> 10 -> 60 -> 70 -> 20 -> 30 -> 40
+print(singly_linked_list_1.search_value(20)) # 20 found in the linked list
+print(singly_linked_list_1.search_value(100)) # 100 not found in the linked list
 singly_linked_list_1.insert(50, 2)
-singly_linked_list_1.traversal()
+singly_linked_list_1.traversal() # 94 -> 10 -> 50 -> 60 -> 70 -> 20 -> 30 -> 40
 singly_linked_list_1.delete_node(0)
-singly_linked_list_1.traversal()
+singly_linked_list_1.traversal()# 10 -> 50 -> 60 -> 70 -> 20 -> 30 -> 40
 singly_linked_list_1.delete_node(-1)
-singly_linked_list_1.traversal()
+singly_linked_list_1.traversal() # 10 -> 50 -> 60 -> 70 -> 20 -> 30
 Singly_Linked_List_2 = Singly_Linked_List()
-Singly_Linked_List_2.traversal()
-singly_linked_list_1.traversal()
+Singly_Linked_List_2.traversal() # the linked list is none!
+singly_linked_list_1.traversal() # 10 -> 50 -> 60 -> 70 -> 20 -> 30
+
+
+print("====================================================")
+
+class Circular_Singly_linked_list:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node
+            node = node.next
+            if node == self.tail.next:
+                break
+
+    def create(self, data):
+        node = Node(data= data)
+        node.next = node
+        self.head = node
+        self.tail = node
+        print("Node is created successfully")
+        return
+
+
+    def insert(self, data, location):
+        if self.head is None:
+            print("There is no Node that references circular singly linked")
+            return
+        else:
+            node = Node(data)
+            if location == 0:
+                node.net = self.head
+                self.head = node
+                self.tail.next = node
+            elif location == -1:
+                node.next = self.tail.next
+                self.tail.next = node
+                self.tail = node              
+            else:
+                temp_node = self.head
+                index = 0 
+                while index < location-1:
+                    temp_node = temp_node.next
+                    index += 1
+                next_node = temp_node.next
+                temp_node.next = node
+                node.next = next_node
+
+    
+
+    def traverse(self):
+        nodes = []
+        if self.head is None:
+            print("The circular singly linked is empty")
+            return
+        else:
+            node = self.head
+            while node:
+                nodes.append(str(node.data))
+                node = node.next
+                if node == self.tail.next:
+                    break
+        print(" -> ".join(nodes))
+
+
+    def search(self, value):
+        if self.head is None:
+            print("There is no node reference ")
+        else:
+            i = 0
+            node = self.head
+            while node:
+                if node.data == value:
+                    print(f'the value {value} is found on the {i+1}th position')
+                    return 
+                node = node.next
+                i += 1
+                if node == self.tail.next:
+                    print(f"the value {value} doesn't fo und on the linked list")
+                    return
+
+
+    def delete(self, location):
+        if self.head is None:
+            print("The Linked List is Empty")
+            return
+        else:
+            if location == 0:
+                if self.head == self.tail.next:
+                    self.tail = None
+                    self.head = None
+                else:
+                    self.head = self.head.next
+                    self.tail.next = self.head
+            elif location == -1:
+                if self.head == self.tail.next:
+                    self.tail = None
+                    self.head = None
+                else:
+                    node = self.head
+                    while node is not None:
+                        if node.next == self.tail:
+                            break
+                        node = node.next
+                    node.next = self.head
+                    self.tail = node
+            else:
+                temp_node = self.head
+                i = 0 
+                while i < location - 1:
+                    temp_node  = temp_node.next
+                    i += 1
+                next_node =  temp_node.next
+                temp_node.next = next_node.next
+    
+
+    def delete_entire(self):
+        self.head = None
+        self.tail.next = None
+        self.tail = None
+         
+
+
+                    
+
+                    
+                
+
+
+Circular_Singly_linked_list_1 = Circular_Singly_linked_list()
+Circular_Singly_linked_list_1.create(1)
+Circular_Singly_linked_list_1.insert(2,-1)
+Circular_Singly_linked_list_1.insert(3,-1)
+Circular_Singly_linked_list_1.insert(4,-1)
+Circular_Singly_linked_list_1.insert(5,-1)
+Circular_Singly_linked_list_1.insert(6,-1)
+Circular_Singly_linked_list_1.insert(7,-1)
+Circular_Singly_linked_list_1.insert(8,-1)
+Circular_Singly_linked_list_1.traverse()
+Circular_Singly_linked_list_1.search(6)
+Circular_Singly_linked_list_1.delete(2)
+Circular_Singly_linked_list_1.traverse()
+
+
