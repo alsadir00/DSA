@@ -183,11 +183,7 @@ class Linked_List_stack:
         self.Linked_list.head = None
         print("The stack is become empty")
         return
-
-
     
-
-
 
 
 
@@ -202,5 +198,11 @@ Linked_List_stack_1.push(4)
 Linked_List_stack_1.push(5)
 Linked_List_stack_1.peak()
 Linked_List_stack_1.size()
+
+# when to use to stack:
+    # when LIFO functionality  is considered
+    # the chance of data corruption is minimum
+# when to avoid stack:
+    # when random access is considered since it is not possible to have random access
 
 
