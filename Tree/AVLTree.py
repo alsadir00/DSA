@@ -164,7 +164,10 @@ def search(rootNode, value):
             search(rootNode.right, value)
 
 
-
+def getHeight(rootNode):
+    if not rootNode:
+        return 0
+    return rootNode.height
 
 
 
