@@ -35,14 +35,21 @@ class Heap:
 
     def __init__(self, size):
         self.elements = [None] * size + 1
-        self.size = size
+        self.size = 0
         self.maxSize = size + 1
     
 
-    def peak(rootNode):
-        if not rootNode:
-            return "No element is there"
+def peak(rootNode):
+    if not rootNode:
+        return "No element is there"
+    else:
+        return rootNode.elements[1]
+        
+def size(rootNode):
+        if  not rootNode:
+             return
         else:
-            return rootNode.elements[1]
+             return rootNode.size
+
         
     
