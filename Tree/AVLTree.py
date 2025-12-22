@@ -173,3 +173,11 @@ def getHeight(rootNode):
 
 
 
+def getBalance(rootNode):
+    if not rootNode:
+        return 0
+    return getHeight(rootNode.left) - getHeight(rootNode.right)
+
+
+
+
