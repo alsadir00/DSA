@@ -170,7 +170,21 @@ def getHeight(rootNode):
     return rootNode.height
 
 
+def rightRotate(unbalancedNode):
+    newRoot = unbalancedNode.left
+    unbalancedNode.left = unbalancedNode.left.right
+    newRoot.right = unbalancedNode
+    unbalancedNode.height = 1 + max(getHeight(unbalancedNode.left), getHeight(unbalancedNode.right))
+    newRoot.height = 1 + max(getHeight(newRoot.left), getHeight(newRoot.right))
+    return newRoot
 
+def leftRotate(unbalancedNode):
+    newRoot = unbalancedNode.right
+    unbalancedNode.right = unbalancedNode.right.left
+    newRoot.left = unbalancedNode
+    unbalancedNode.height = 1 + max(getHeight(unbalancedNode.left), getHeight(unbalancedNode.right))
+    newRoot.height = 1 + max(getHeight(newRoot.left), getHeight(newRoot.right))
+    return newRoot
 
 
 def getBalance(rootNode):
