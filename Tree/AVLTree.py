@@ -215,13 +215,60 @@ def insert(rootNode, nodeValue):
         return leftRotate(rootNode)
     return rootNode
 
+def getMinValueNode(rootNode):
+    if rootNode is None or rootNode.left is None:
+        return rootNode
+    return getMinValueNode(rootNode.left)
 
 
+def deleteNode(rootNode, nodeValue):
+    if not rootNode:
+        return rootNode
+    elif nodeValue < rootNode.data:
+        rootNode.left = deleteNode(rootNode.left, nodeValue)
+    elif nodeValue > rootNode.data:
+        rootNode.right = deleteNode(rootNode.right, nodeValue)
+    else:
+        if rootNode.left is None:
+            temp = rootNode.right
+            rootNode = None
+            return temp
+        elif rootNode.right is None:
+            temp = rootNode.left
+            rootNode = None
+            return temp
+        temp = getMinValueNode(rootNode.right)
+        rootNode.data = temp.data
+        rootNode.right = deleteNode(rootNode.right, temp.data)
+    balance = getBalance(rootNode)
+    if balance > 1 and getBalance(rootNode.left) >= 0:
+        return rightRotate(rootNode)
+    if balance < -1 and getBalance(rootNode.right) <= 0:
+        return leftRotate(rootNode)
+    if balance > 1 and getBalance(rootNode.left) < 0:
+        rootNode.left = leftRotate(rootNode.left)
+        return rightRotate(rootNode)
+    if balance < -1 and getBalance(rootNode.right) > 0:
+        rootNode.right = rightRotate(rootNode.right)
+        return leftRotate(rootNode)
+    
+    return rootNode
+
+
+def deleteAVL(rootNode):
+    rootNode.data = None
+    rootNode.left = None
+    rootNode.right = None
+    return "The AVL has been successfully deleted"
 
 newAvl = AVLNode(5)
 newAvl = insert(newAvl, 10)
 newAvl = insert(newAvl, 15)
 newAvl = insert(newAvl, 20)
 newAvl = insert(newAvl, 30)
-
 levelOrder(newAvl)
+newAvl = deleteNode(newAvl, 10)
+print('=' * 30)
+levelOrder(newAvl)
+print('=' * 30)
+print(deleteAVL(newAvl))
