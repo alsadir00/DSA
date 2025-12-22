@@ -34,7 +34,7 @@
 class Heap:
 
     def __init__(self, size):
-        self.elements = [None] * size + 1
+        self.elements = [None] * (size + 1)
         self.size = 0
         self.maxSize = size + 1
     
@@ -45,7 +45,7 @@ def peak(rootNode):
     else:
         return rootNode.elements[1]
         
-def size(rootNode):
+def Heap_Size(rootNode):
         if  not rootNode:
              return
         else:
@@ -55,7 +55,7 @@ def levelOrder(rootNode):
     if not rootNode:
         return
     else:
-        for i in range(1, rootNode.heapSize+1):
+        for i in range(1, rootNode.size+1):
             print(rootNode.elements[i])
 
 
@@ -78,12 +78,91 @@ def heapifyTreeInsert(rootNode, index, heapType):
 
 
 def insert(rootNode, value , type):
-    if rootNode.size == rootNode.maxSize:
+    if rootNode.size + 1 == rootNode.maxSize:
         return "The binary heap is full"
-    else:
-        rootNode.elements[size +1] = value
-        rootNode.size += 1
-        heapifyTreeInsert(rootNode, rootNode.size, type)
-        print(f"The element {value} is inserted successfully")
-        return
+    rootNode.elements[rootNode.size + 1] = value
+    rootNode.size += 1
+    heapifyTreeInsert(rootNode, rootNode.size, type)
+    print(f"The element {value} is inserted successfully")
+    return
+    
 
+def heapifyTreeExtract(rootNode, index, heapType):
+    leftIndex = index * 2
+    rightIndex = index * 2 + 1
+    swapChild = 0
+
+    if rootNode.size < leftIndex:
+        return
+    elif rootNode.size == leftIndex:
+        if heapType == "Min":
+            if rootNode.elements[index] > rootNode.elements[leftIndex]:
+                temp = rootNode.elements[index]
+                rootNode.elements[index] = rootNode.elements[leftIndex]
+                rootNode.elements[leftIndex] = temp
+            return
+        else:
+            if rootNode.elements[index] < rootNode.elements[leftIndex]:
+                temp = rootNode.elements[index]
+                rootNode.elements[index] = rootNode.elements[leftIndex]
+                rootNode.elements[leftIndex] = temp
+            return
+
+    else:
+        if heapType == "Min":
+            if rootNode.elements[leftIndex] < rootNode.elements[rightIndex]:
+                swapChild = leftIndex
+            else:
+                swapChild = rightIndex
+            if rootNode.elements[index] > rootNode.elements[swapChild]:
+                temp = rootNode.elements[index]
+                rootNode.elements[index] = rootNode.elements[swapChild]
+                rootNode.elements[swapChild] = temp
+        else:
+            if rootNode.elements[leftIndex] > rootNode.elements[rightIndex]:
+                swapChild = leftIndex
+            else:
+                swapChild = rightIndex
+            if rootNode.elements[index] < rootNode.elements[swapChild]:
+                temp = rootNode.elements[index]
+                rootNode.elements[index] = rootNode.elements[swapChild]
+                rootNode.elements[swapChild] = temp
+    heapifyTreeExtract(rootNode, swapChild, heapType)
+
+def extract(rootNode, heapType):
+    if rootNode.size == 0:
+        return
+    else:
+        extractedNode = rootNode.elements[1]
+        rootNode.elements[1] = rootNode.elements[rootNode.size]
+        rootNode.elements[rootNode.size] = None
+        rootNode.size -= 1
+        heapifyTreeExtract(rootNode, 1, heapType)
+        return extractedNode
+
+
+
+heap = Heap(10)
+print(levelOrder(heap))
+print(Heap_Size(heap))
+print(peak(heap))
+insert(heap, 2, "Max")
+insert(heap, 4, "Max")
+insert(heap, 59, "Max")
+insert(heap, 40, "Max")
+insert(heap, 28, "Max")
+insert(heap, 10, "Max")
+insert(heap, 11, "Max")
+insert(heap, 77, "Max")
+insert(heap, 8, "Max")
+insert(heap, 100, "Max")
+
+print(levelOrder(heap))
+print("=" * 40)
+print(Heap_Size(heap))
+print("=" * 40)
+print(peak(heap))
+print("=" * 40)
+extract(heap,"Max" )
+print(levelOrder(heap))
+print("=" * 40)
