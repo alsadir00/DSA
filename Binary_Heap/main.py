@@ -51,5 +51,39 @@ def size(rootNode):
         else:
              return rootNode.size
 
-        
-    
+def levelOrder(rootNode):
+    if not rootNode:
+        return
+    else:
+        for i in range(1, rootNode.heapSize+1):
+            print(rootNode.elements[i])
+
+
+def heapifyTreeInsert(rootNode, index, heapType):
+    parentIndex = int(index/2)
+    if index <= 1:
+        return
+    if heapType == "Min":
+        if rootNode.elements[index] < rootNode.elements[parentIndex]:
+            temp = rootNode.elements[index]
+            rootNode.elements[index] = rootNode.elements[parentIndex]
+            rootNode.elements[parentIndex] = temp
+        heapifyTreeInsert(rootNode, parentIndex, heapType)
+    elif heapType == "Max":
+        if rootNode.elements[index] > rootNode.elements[parentIndex]:
+            temp = rootNode.elements[index]
+            rootNode.elements[index] = rootNode.elements[parentIndex]
+            rootNode.elements[parentIndex] = temp
+        heapifyTreeInsert(rootNode, parentIndex, heapType)
+
+
+def insert(rootNode, value , type):
+    if rootNode.size == rootNode.maxSize:
+        return "The binary heap is full"
+    else:
+        rootNode.elements[size +1] = value
+        rootNode.size += 1
+        heapifyTreeInsert(rootNode, rootNode.size, type)
+        print(f"The element {value} is inserted successfully")
+        return
+
