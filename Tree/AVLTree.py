@@ -193,5 +193,35 @@ def getBalance(rootNode):
     return getHeight(rootNode.left) - getHeight(rootNode.right)
 
 
+def insert(rootNode, nodeValue):
+    if not rootNode:
+        return AVLNode(nodeValue)
+    elif nodeValue < rootNode.data:
+        rootNode.left = insert(rootNode.left, nodeValue)
+    else:
+        rootNode.right = insert(rootNode.right, nodeValue)
+    
+    rootNode.height = 1 + max(getHeight(rootNode.left), getHeight(rootNode.right))
+    balance = getBalance(rootNode)
+    if balance > 1 and nodeValue < rootNode.left.data:
+        return rightRotate(rootNode)
+    if balance > 1 and nodeValue > rootNode.left.data:
+        rootNode.left = leftRotate(rootNode.left)
+        return rightRotate(rootNode)
+    if balance < -1 and nodeValue > rootNode.right.data:
+        return leftRotate(rootNode)
+    if balance < -1 and nodeValue < rootNode.right.data:
+        rootNode.right = rightRotate(rootNode.right)
+        return leftRotate(rootNode)
+    return rootNode
 
 
+
+
+newAvl = AVLNode(5)
+newAvl = insert(newAvl, 10)
+newAvl = insert(newAvl, 15)
+newAvl = insert(newAvl, 20)
+newAvl = insert(newAvl, 30)
+
+levelOrder(newAvl)
