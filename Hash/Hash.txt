@@ -1,0 +1,38 @@
+Hashing / Hash Table – Short Notes
+1️⃣ What is Hashing?
+    Hashing is a technique to store and retrieve data efficiently using a hash function.
+        Converts key → index in an array
+        Goal: O(1) average time for insert, search, delete
+
+2️⃣ Why use Hashing?
+    Fast lookup & insertion
+    Handles large datasets efficiently
+    Ideal for dictionaries, sets, caching, counting frequencies
+
+    Applications:
+        Dictionaries & symbol tables
+        Caching (LRU, memoization)
+        Counting occurrences
+        Detect duplicates
+        Cryptography (hash functions)
+
+
+3️⃣ Hash Table Properties
+    Uses array + hash function
+    Each element is a key-value pair
+    Handles collisions (two keys → same index)
+
+
+5️⃣ Collision Handling
+
+When two keys map to the same index:
+    1. Chaining (Linked List)
+        # Each bucket stores a list of key-value pairs
+        table = [[] for _ in range(size)]
+
+
+    2. Open Addressing
+        Linear probing: try next slot
+        Quadratic probing: jump by squares
+        Double hashing: second hash function
+
