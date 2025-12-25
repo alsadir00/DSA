@@ -1,0 +1,39 @@
+1️⃣ In-place vs Out-of-place
+        In-place sorting:
+            Sorting done within the original array
+            Uses only a small, constant amount of extra memory (O(1))
+            Example: Bubble Sort, Insertion Sort, Heap Sort, Quick Sort (in-place version)
+
+        Out-of-place sorting:
+            Sorting requires extra memory proportional to input size (O(n))
+            Often used when we cannot modify the original array
+            Example: Merge Sort, Counting Sort, Radix Sort
+
+2️⃣ Stable vs Unstable Sorting
+    Stable sorting:
+        Maintains the relative order of equal elements
+        Important when elements have multiple attributes (e.g., sort by age then by name)
+        Example: Bubble Sort, Insertion Sort, Merge Sort, Counting Sort
+
+    Unstable sorting:
+        Does not guarantee the relative order of equal elements
+        Example: Selection Sort, Quick Sort, Heap Sort
+
+3️⃣ Comparison-based vs Non-comparison-based
+    Comparison-based sorting:
+        Sorts elements by comparing pairs
+        Examples: Bubble, Selection, Insertion, Merge, Quick, Heap
+
+    Non-comparison-based sorting:
+        Sorts elements using counting or grouping, not direct comparison
+        Examples: Counting Sort, Radix Sort, Bucket Sort
+
+4️⃣ Time Complexity Terms
+    Best case: Optimal scenario (e.g., array already sorted for Insertion Sort)
+    Worst case: Maximum number of operations (e.g., Quick Sort with sorted input if pivot is bad)
+    Average case: Typical scenario across all inputs
+
+5️⃣ Space Complexity
+    Auxiliary space: Extra memory used for sorting apart from the original array
+    In-place: Uses minimal auxiliary space (O(1))
+    Out-of-place: Uses extra space proportional to array size (O(n))
