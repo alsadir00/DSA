@@ -37,3 +37,135 @@
     Auxiliary space: Extra memory used for sorting apart from the original array
     In-place: Uses minimal auxiliary space (O(1))
     Out-of-place: Uses extra space proportional to array size (O(n))
+
+
+
+
+
+1️⃣ Bubble Sort
+    Definition:
+        Simple comparison-based algorithm that repeatedly swaps adjacent elements if they are in the wrong order.
+    Idea:
+        Compare each pair of adjacent elements and swap if necessary
+        Largest element “bubbles up” to the end of the array each pass
+
+    Complexity:
+        Best: O(n) (already sorted)
+        Average: O(n²)
+        Worst: O(n²)
+        Space: O(1)
+        Stable: Yes
+        In-place: Yes
+
+    Notes:
+        Easy to implement
+        Inefficient for large datasets
+
+2️⃣ Selection Sort
+    Definition:
+        Find the minimum (or maximum) element in the array and move it to its correct position.
+    Idea:
+        Divide array into sorted and unsorted parts
+        Select the smallest element from unsorted and swap with first unsorted
+    Complexity:
+        Best / Average / Worst: O(n²)
+        Space: O(1)
+        Stable: No
+        In-place: Yes
+    Notes:
+        Minimizes the number of swaps
+        Not stable unless modified
+
+3️⃣ Insertion Sort
+    Definition:
+        Builds the sorted array one element at a time by inserting each new element at its correct position.
+    Idea:
+        Take next element and insert it into the sorted portion of the array
+    Complexity:
+        Best: O(n) (already sorted)
+        Average / Worst: O(n²)
+        Space: O(1)
+        Stable: Yes
+        In-place: Yes
+    Notes:
+    Very efficient for small or nearly sorted arrays
+    Adaptive algorithm
+
+4️⃣ Merge Sort
+    Definition:
+        A divide-and-conquer algorithm that divides the array into halves, sorts them recursively, and merges the sorted halves.
+    Idea:
+        Split array into halves
+        Recursively sort each half
+        Merge sorted halves
+    Complexity:
+        Best / Average / Worst: O(n log n)
+        Space: O(n)
+        Stable: Yes
+        In-place: No
+    Notes:
+        Consistent O(n log n) time
+        Extra memory required for merging
+
+5️⃣ Quick Sort
+    Definition:
+        Divide-and-conquer algorithm that picks a pivot element, partitions the array around the pivot, and recursively sorts partitions.
+    Idea:
+        Choose pivot
+        Partition array into < pivot and > pivot
+        Recursively sort partitions
+    Complexity:
+        Best / Average: O(n log n)
+        Worst: O(n²) (bad pivot selection)
+        Space: O(log n) (recursion)
+        Stable: No
+        In-place: Yes
+    Notes:
+        Very fast in practice
+        Can be improved with randomized pivot
+
+6️⃣ Heap Sort
+    Definition:
+        Uses a binary heap to sort the array. Build a max-heap, then repeatedly extract the maximum element.
+    Idea:
+        Build max-heap
+        Swap root with last element
+        Heapify reduced heap
+        Repeat until sorted
+    Complexity:
+        Best / Average / Worst: O(n log n)
+        Space: O(1)
+        Stable: No
+        In-place: Yes
+    Notes:
+        Useful when constant memory is required
+        Not stable
+
+7️⃣ Counting Sort
+    Definition:
+        Non-comparison-based sorting that counts the occurrences of each element and reconstructs the sorted array.
+    Idea:
+        Count each element in a frequency array
+        Compute cumulative counts
+        Place elements at correct positions
+    Complexity:
+        O(n + k), where k = range of input values
+        Space: O(k)
+        Stable: Yes
+        In-place: No
+    Notes:
+        Works only for integers or small range data
+        Basis for Radix Sort and Bucket Sort
+
+
+
+
+| Algorithm | Best       | Avg        | Worst      | Space    | Stable | In-place |
+| --------- | ---------- | ---------- | ---------- | -------- | ------ | -------- |
+| Bubble    | O(n)       | O(n²)      | O(n²)      | O(1)     | Yes    | Yes      |
+| Selection | O(n²)      | O(n²)      | O(n²)      | O(1)     | No     | Yes      |
+| Insertion | O(n)       | O(n²)      | O(n²)      | O(1)     | Yes    | Yes      |
+| Merge     | O(n log n) | O(n log n) | O(n log n) | O(n)     | Yes    | No       |
+| Quick     | O(n log n) | O(n log n) | O(n²)      | O(log n) | No     | Yes      |
+| Heap      | O(n log n) | O(n log n) | O(n log n) | O(1)     | No     | Yes      |
+| Counting  | O(n + k)   | O(n + k)   | O(n + k)   | O(k)     | Yes    | No       |
