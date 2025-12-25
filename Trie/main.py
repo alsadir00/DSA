@@ -54,7 +54,7 @@ class Trie:
             current = current.children[ch]
         
         current.end_of_string = True
-        print('the wor is inserted successfully')
+        print('the word is inserted successfully')
 
     def search(self, word):
         current = self.root
