@@ -22,4 +22,4 @@ def Selection_Sort(array, type):
 
 
 list_1 = [1,4,2,7,33,66,33,86,94,3,2,55,88]
-Selection_Sort(list_1, 'ASC')
+Selection_Sort(list_1, 'DESC')
